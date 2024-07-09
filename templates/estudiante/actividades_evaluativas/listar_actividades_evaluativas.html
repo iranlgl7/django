@@ -1,0 +1,44 @@
+{% extends "layout/base_estudiante.html" %}
+{% load static %}
+
+{% block 'titulo' %}Actividades Evaluativas{% endblock %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista.css' %}">
+{% endblock %}
+
+{% block 'link-actividades' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Actividades Evaluativas de <b>"{{asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for respuesta in object_list %}
+    <a class="lista-item-link" href="{% url 'visualizar_actividad_evaluativa' asignatura_pk=view.kwargs.asignatura_pk pk=respuesta.pk %}"
+      style="font-size: 20px;">
+      <div class="row p-1">
+        <div class="col-11">
+          <b>#{{respuesta.actividad.numero}} Actividad:</b> {{respuesta.actividad.objetivoEvaluar}}
+        </div>
+        <div class="col-1 text-sm-end">
+          {% if respuesta.resuelta %}
+          <i class="fa-solid fa-check"></i>
+          {% else %}
+            {% if respuesta.actividad.estado == "Habilitada" %}
+              <i class="fa-solid fa-pencil"></i>
+            {% else %}
+              <i class="fa-solid fa-circle-exclamation"></i>
+            {% endif %}
+          {% endif %}
+         </div>
+      </div>
+    </a>
+    {% empty %}
+    <h4 class="text-center">Ninguna actividad evaluativa de {{asignatura.nombre}} en el sistema.</h4>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

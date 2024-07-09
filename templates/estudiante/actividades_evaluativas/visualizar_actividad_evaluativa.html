@@ -1,0 +1,53 @@
+{% extends "layout/base_estudiante.html" %}
+
+{% block 'titulo' %}Visualizar Actividad Evaluativa{% endblock %}
+
+{% block 'contenido' %}
+<div class="text-center mt-3">
+  <h1>Actividad Evaluativa #{{respuesta.actividad.numero}} de <b>"{{respuesta.actividad.asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container bg-white border rounded p-4">
+  {% if respuesta.actividad.estado == 'Habilitada' %}
+  <h3 class='text-success text-center'>Actividad Disponible</h3>
+  {% else %}
+  <h3 class='text-danger text-center'>Actividad No Disponible</h3>
+  {% endif %}
+  {% if respuesta.resuelta %}
+    {% if respuesta.calificacion %}
+    <h4><b>Calificación: </b>{{respuesta.calificacion}}</h4>
+    {% else %}
+    <h4><b>Calificación: </b>Pendiente</h4>
+    {% endif %}
+    <hr>
+  {% endif %}
+  <h4 class="mb-3" style="word-wrap: break-word; overflow: hidden;"><b>Objetivo:</b> {{respuesta.actividad.objetivoEvaluar}}</h4>
+  <hr>
+  <h4> <b>Orden:</b></h4>
+  <div style="text-align: justify; font-size: 20px;">
+    {{respuesta.actividad.orden}}
+  </div>
+  {% if respuesta.resuelta %}
+  <hr>
+  <h4> <b>Respuesta:</b></h4>
+  <div style="text-align: justify; font-size: 20px;">
+    {% if respuesta.respuesta == '' %}
+      <span class='text-danger'><i class="fa-solid fa-triangle-exclamation"></i> No ha respondido nada en esta actividad</span>
+    {% else %}
+    {{respuesta.respuesta}}
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+<div class="mt-5 p-4"></div>
+<div class="fixed-bottom p-3 border bg-white d-flex shadow justify-content-around">
+  <a class="btn btn-purple" href="{% url "listar_actividades_evaluativas" view.kwargs.asignatura_pk %}"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+  {% if respuesta.actividad.estado == 'Habilitada' %}
+    {% if not respuesta.resuelta %}
+      <a class="btn btn-purple" href="{% url "responder_actividad_evaluativa" asignatura_pk=view.kwargs.asignatura_pk pk=respuesta.pk %}">Responder Actividad <i class='fa fa-solid fa-pen'></i></a>
+    {% else %}
+      <a class="btn btn-purple" href="{% url "responder_actividad_evaluativa" asignatura_pk=view.kwargs.asignatura_pk pk=respuesta.pk %}"><i class="fa-solid fa-pen-to-square"></i> Editar Respuesta</a>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

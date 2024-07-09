@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Acceso Restringido</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body class="vh-100 d-flex bg-light justify-content-center align-items-center">
+  <div class="container bg-primary p-4 border border-dark rounded shadow text-dark">
+    <h4><i class="fa-solid fa-triangle-exclamation"></i> Atención</h4>
+    <hr>
+    <h1 class='text-center'>Usted ya se encuentra iniciado en el sistema</h1>
+    <hr>
+    <form action="{% url 'logout' %}" method="post" class='d-flex justify-content-around'>
+      {% csrf_token %}
+      {% if request.user.usuario.rol == 'estudiante' %}
+      <a href="{% url 'listar_asignaturas' %}" class="btn btn-dark btn-lg"><i class="fa-solid fa-arrow-rotate-left"></i> Regresar</a>
+      {% elif request.user.usuario.rol == 'estudiante' %}
+      <a href="{% url 'listar_clases_profesor' %}" class="btn btn-dark btn-lg"><i class="fa-solid fa-arrow-rotate-left"></i> Regresar</a>
+      {% endif %}
+      <button class='btn btn-dark btn-lg' type="submit">Cerrar Sesion</button>
+    </form>
+  </div>
+</body>
+

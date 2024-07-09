@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>EVA - Eliminar</title>
+  <link rel="icon" type="image/png" href="{% static 'icono-login.png' %}" />
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body class="vh-100 bg-light d-flex justify-content-center align-items-center">
+  <div class="bg-white border rounded shadow p-4">
+    <h6><i class="fa-solid fa-triangle-exclamation"></i> Confirmar Eliminación</h6>
+    <hr>
+    <h3 class="mt-4 mb-4">{{mensaje}}</h3>
+    <hr>
+    <form method="post" class="d-flex justify-content-between">
+      {% csrf_token %}
+      <a href="{{dir}}" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i> Cancelar</a>
+      <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash-can"></i> Eliminar</button>
+    </form>
+  </div>
+</body>
+
+</html>

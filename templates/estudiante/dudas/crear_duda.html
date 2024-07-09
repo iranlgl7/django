@@ -1,0 +1,87 @@
+{% extends "layout/base_estudiante.html" %}
+{% load static %}
+
+{% block 'titulo' %}
+{% if crear %}
+Crear Duda
+{% else %}
+Editar Duda
+{% endif %}
+{% endblock %}
+
+{% block 'contenido' %}
+<div class="text-center mt-3">
+  {% if crear %}
+  <h1>Plantear Duda</h1>
+  {% else %}
+  <h1>Editar Duda</h1>
+  {% endif %}
+</div>
+<hr>
+<div class="container">
+  <form method='post' id="form">
+    {% csrf_token %}
+    <label class='form-label' for="sobre">Asunto:</label>
+    {{form.sobre}}
+    <div>
+      <div id="error-asunto" class="invalid-feedback">
+        Debe completar este campo para continuar.
+      </div>
+      <div id="error-asunto-formato" class="invalid-feedback">
+        Este campo solo admite 150 caracteres.
+      </div>
+    </div>
+    <label class='form-label mt-2' for="sobre">Mensaje:</label>
+    {{form.mensaje}}
+    <div>
+      <div id="error-mensaje" class="invalid-feedback">
+        Debe completar este campo para continuar.
+      </div>
+    </div>
+  </form>
+  <div class="fixed-bottom d-flex p-3 justify-content-around bg-white border shadow">
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#cancelar"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#aceptar"><i class="fa-solid fa-check"></i>  Aceptar</button>
+  </div>
+  <div class="mt-5 p-4"></div>
+  <div class="modal" id="cancelar">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-triangle-exclamation text-danger"></i> Descartar Cambios</h5>
+          <button data-bs-dismiss="modal" class="btn-close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea descartar los cambios de la duda actual?</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button data-bs-dismiss="modal" class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+          <a href="{% url 'listar_dudas' asignatura_pk=view.kwargs.asignatura_pk profesor_pk=view.kwargs.profesor_pk %}" class="btn btn-success"><i class="fa-solid fa-check"></i>  Aceptar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="aceptar">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-circle-exclamation text-info"></i>  Confirmar Cambios</h5>
+          <button data-bs-dismiss="modal" class="btn-close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Desea guardar los cambios?</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button data-bs-dismiss="modal" class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+          <button data-bs-dismiss="modal" class="btn btn-success" type="submit" form="form"><i class="fa-solid fa-check"></i>  Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block 'scripts' %}
+<script src='{% static "jquery/jquery-3.7.1.min.js" %}'></script>
+<script src='{% static "js/validar_duda.js" %}'></script>
+{% endblock  %}

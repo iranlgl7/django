@@ -1,0 +1,29 @@
+{% extends "layout/base_estudiante.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Dudas{% endblock %}
+
+{% block 'link-dudas' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Dudas sobre <b>"{{asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<h2 class='text-center'>Seleccione el profesor a preguntar:</h2>
+<div class="container">
+  <div class='lista'>
+    {% for profesor in object_list %}
+    <a class="lista-item-link" href="{% url "listar_dudas" asignatura_pk=view.kwargs.asignatura_pk profesor_pk=profesor.pk %}"
+      style="font-size: 20px;">
+      {{profesor.usuario.first_name}}
+      {{profesor.usuario.last_name}}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

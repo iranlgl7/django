@@ -1,0 +1,115 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'titulo' %}
+{% if crear %}
+Crear Actividad Evaluativa
+{% else %}
+Editar Actividad Evaluativa
+{% endif %}
+{% endblock %}
+
+{% block 'contenido' %}
+<div class="text-center mt-3">
+  {% if crear %}
+  <h1>Crear Actividad Evaluativa de <b>"{{request.user.usuario.profesor.asignatura.nombre}}"</b></h1>
+  {% else %}
+  <h1>Editar Actividad Evaluativa de <b>"{{request.user.usuario.profesor.asignatura.nombre}}"</b></h1>
+  {% endif %}
+</div>
+<hr>
+<div class="container">
+  {% if form.errors %}
+  {% for error in form.numero.errors %}
+  <div class="alert alert-danger d-flex align-items-center alert-dismissible" role="alert">
+    {{error}}
+    <button class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <form method='post' id="form">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="numero" class="form-label ">Número de Actividad Evaluativa:</label>
+        {{form.numero}}
+        <div>
+          <div id="error-numero" class="invalid-feedback">
+            Debe completar este campo para continuar.
+          </div>
+          <div id="error-numero-formato" class="invalid-feedback">
+            Este campo solo admite valores numéricos positivos.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <label for="habilitada" class="form-label ">Estado de la Actividad Evaluativa:</label>
+        {{form.estado}}
+      </div>
+    </div>
+    <label for="objetivoEvaluar" class="form-label mt-2">Objetivo:</label>
+    {{form.objetivoEvaluar}}
+    <div>
+      <div id="error-objetivo" class="invalid-feedback">
+        Debe completar este campo para continuar.
+      </div>
+      <div id="error-objetivo-formato" class="invalid-feedback">
+        Este campo solo admite 255 caracteres.
+      </div>
+    </div>
+    <label for="orden" class="form-label mt-2">Orden:</label>
+    <div>
+      <div id="error-orden" class="invalid-feedback">
+        Debe completar este campo para continuar.
+      </div>
+    </div>
+    {{form.orden}}
+  </form>
+  <div class="mt-5 p-4"></div>
+  <div class="fixed-bottom d-flex p-3 justify-content-around bg-white border shadow">
+    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#cancelar"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#aceptar"><i class="fa-solid fa-check"></i> Aceptar</button>
+  </div>
+  <div class="mt-5 p-4"></div>
+  <div class="modal" id="cancelar">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-triangle-exclamation text-danger"></i> Descartar Cambios</h5>
+          <button data-bs-dismiss="modal" class="btn-close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Seguro que desea descartar los cambios en la actividad evaluativa actual?</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button data-bs-dismiss="modal" class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+          <a href="{% url 'listar_actividades_evaluativas_profesor' %}" class="btn btn-success"><i class="fa-solid fa-check"></i> Aceptar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="aceptar">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fa-solid fa-circle-exclamation text-info"></i> Confirmar Cambios</h5>
+          <button data-bs-dismiss="modal" class="btn-close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Desea guardar los cambios?</p>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <button data-bs-dismiss="modal" class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+          <button data-bs-dismiss="modal" class="btn btn-success" type="submit" form="form"><i class="fa-solid fa-check"></i> Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block 'scripts' %}
+<script src='{% static "jquery/jquery-3.7.1.min.js" %}'></script>
+<script src='{% static "js/validar_actividad_evaluativa.js" %}'></script>
+{% endblock  %}

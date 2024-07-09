@@ -1,0 +1,37 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista estudiantes.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Dudas{% endblock %}
+
+{% block 'link-dudas' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Estudiantes con Dudas</h1>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for estudiante in object_list %}
+    <a class="lista-item-link" href="{% url "listar_dudas_profesor" estudiante_pk=estudiante.pk %}"
+      style="font-size: 20px;">
+      <span class='fw-bold'>Grupo 
+        {% if estudiante.grado == 7 %}
+        {{estudiante.grado}}mo
+        {% elif estudiante.grado == 8 %}
+        {{estudiante.grado}}vo 
+        {% elif estudiante.grado == 9 %}
+        {{estudiante.grado}}no
+        {% endif %}
+        {{estudiante.grupo}}:</span>
+      {{estudiante.usuario.first_name}}
+      {{estudiante.usuario.last_name}}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

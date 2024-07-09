@@ -1,0 +1,20 @@
+{% extends "layout/base_estudiante.html" %}
+
+{% block 'titulo' %}Visualizar Clase{% endblock %}
+
+{% block 'contenido' %}
+<div class="text-center mt-3">
+  <h1>Clase #{{clase.numero}} de <b>"{{clase.asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container bg-white border rounded p-4">
+  <h4 style="word-wrap: break-word; overflow: hidden;">Tema: <b>{{clase.encabezado}}</b></h4>
+  <div style="text-align: justify; font-size: 20px;">
+    {{clase.cuerpo}}
+  </div>
+</div>
+<div class="mt-5 p-4"></div>
+<div class="fixed-bottom d-flex p-3 justify-content-around bg-white border shadow">
+  <a href="{% url "listar_clases" asignatura_pk=clase.asignatura.pk %}" class="btn btn-purple"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+</div>
+{% endblock %}

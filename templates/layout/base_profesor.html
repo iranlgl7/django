@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block 'fav-icon' %}
+<link rel="icon" type="image/png" href="{% static 'icono_profesor.png' %}" />
+{% endblock  %}
+
+{% block 'estilos' %}
+  <link rel="stylesheet" href="{% static 'css/profesor.css' %}">
+  {% block 'sub-estilos' %}{% endblock  %}
+{% endblock  %}
+
+{% block 'nav_class' %}
+  custom-nav
+{% endblock %}
+
+{% block 'nav_links' %}
+  <a class="nav-link {% block 'link-clases' %}{% endblock  %}" aria-current="page" href="{% url 'listar_clases_profesor'  %}">Clases</a>
+  <a class="nav-link {% block 'link-actividades' %}{% endblock  %}" href="{% url 'listar_actividades_evaluativas_profesor' %}">Actividades</a>
+  <a class="nav-link {% block 'link-dudas' %}{% endblock  %}" href="{% url "listar_estudiantes" %}">Dudas</a>
+{% endblock  %}

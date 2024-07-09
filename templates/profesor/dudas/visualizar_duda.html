@@ -1,0 +1,31 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'titulo' %}Visualizar Duda{% endblock %}
+
+{% block 'contenido' %}
+<div class="text-center mt-3">
+  <h1>Visualizar Duda</h1>
+  <h3><b>Estudiante: </b>{{duda.estudiante.usuario.first_name}} {{duda.estudiante.usuario.last_name}}</h3>
+</div>
+<hr>
+<div class="container bg-white border rounded p-4">
+  <h4 style="word-wrap: break-word; overflow: hidden;"><b>Asunto:</b> {{duda.sobre}}</h4>
+  <div style="text-align: justify; font-size: 20px;">
+    <h4 class='mt-3' style="word-wrap: break-word; overflow: hidden;"><b>Mensaje:</b></h4>
+    {{duda.mensaje}}
+  </div>
+  {% if duda.respuestaduda %}
+    <hr>
+    <h4 class='mt-3' style="word-wrap: break-word; overflow: hidden;"><b>Respuesta:</b></h4>
+    {{duda.respuestaduda.mensaje}}
+  {% endif %}
+</div>
+<div class="mt-5 p-4"></div>
+<div class="fixed-bottom d-flex p-3 justify-content-around bg-white border shadow">
+  <a href="{% url "listar_dudas_profesor" estudiante_pk=duda.estudiante.pk%}" class="btn btn-green"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+  {% if not duda.respuestaduda%}
+      <a href="{% url "crear_respuesta_duda" estudiante_pk=duda.estudiante.pk duda_pk=duda.pk %}" class="btn btn-green">Responder <i class="fa-solid fa-pen"></i></a>
+  {% endif %}
+</div>
+{% endblock %}

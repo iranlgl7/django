@@ -1,0 +1,38 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista profesor.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Clases{% endblock %}
+
+{% block 'link-clases' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Clases de <b>"{{request.user.usuario.profesor.asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for clase in object_list %}
+    <div class="lista-item">
+      <a class="lista-item-link" href="{% url 'visualizar_clase_profesor' clase.pk %}"
+      style="font-size: 20px;">
+      <b>#{{clase.numero}} Tema:</b>
+      {{clase.encabezado}}
+    </a>
+    <a href="{% url 'modificar_clase' clase.pk %}" class="lista-item-btn btn-modificar"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="{% url "eliminar_clase" clase.pk %}" class="lista-item-btn btn-eliminar"><i class="fa-solid fa-trash-can"></i></a>
+    </div>
+    {% empty %}
+    <h4 class="text-center">No existe ninguna clase para esta asginatura.</h4>
+    {% endfor %}
+  </div>
+  <div class="mt-5 p-4"></div>
+  <div class="fixed-bottom d-flex p-3 justify-content-center bg-white border shadow">
+    <a href="{% url 'crear_clase' %}" class="btn btn-green"><i class="fa-solid fa-plus"></i> Nueva Clase</a>
+  </div>
+</div>
+{% endblock %}

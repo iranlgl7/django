@@ -1,0 +1,29 @@
+{% extends "layout/base_estudiante.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Clases{% endblock %}
+
+{% block 'link-clases' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Clases de <b>"{{asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for clase in object_list %}
+    <a class="lista-item-link" href="{% url 'visualizar_clase' asignatura_pk=view.kwargs.asignatura_pk pk=clase.pk %}"
+      style="font-size: 20px;">
+      <b>#{{clase.numero}} Tema:</b> {{clase.encabezado}}
+    </a>
+    {% empty %}
+    <h4 class="text-center">Ninguna clase de {{asignatura.nombre}} en el sistema.</h4>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

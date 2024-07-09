@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Inicio de Sesión</title>
+  <link rel="icon" type="image/png" href="{% static 'icono-login.png' %}" />
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body class='vh-100 d-flex align-items-center justify-content-center'>
+  <div class="login">
+    <div class="text-center mb-4">
+      <h1>Entorno Virtual de Aprendizaje</h1>
+      <h2>Secundaria "28 de Enero"</h2>
+    </div>
+    <h3 class="text-end">Iniciar Sesión</h3>
+    <hr>
+    <form method='post'>
+      {% csrf_token %}
+      <label for="username" class="form-label mt-3">Usuario</label>
+      {{form.username}}
+      <div>
+        <div id="error-user" class="invalid-feedback">
+          Debe insertar su nombre de usuario.
+        </div>
+        <div id="error-user-formato" class="invalid-feedback">
+          Este campo solo admite letras minúsculas.
+        </div>
+      </div>
+      <label for="password" class="form-label mt-3">Contraseña</label>
+      <div class="input-group">
+        {{form.password}}
+        <button id="mostrar" class='btn btn-primary' type="button"><i id='ojo' class="fa-solid fa-eye"></i></button>
+      </div>
+      <div>
+        <div id="error-password" class="invalid-feedback">
+          Debe insertar su contraseña.
+        </div>
+        <div id="error-password-length" class="invalid-feedback">
+          La contraseña debe poseer como mínimo 8 caracteres.
+        </div>
+      </div>
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger d-flex align-items-center alert-dismissible mt-3" role="alert">
+        {{ message }}
+        <button class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary" type="submit">Acceder</button>
+      </div>
+    </form>
+  </div>
+  <img src="{% static 'libros.png' %}" alt="" id="libros">
+  <img src="{% static 'marti.png' %}" alt="" id="marti">
+  <script src='{% static "jquery/jquery-3.7.1.min.js" %}'></script>
+  <script src='{% static "js/validar_login.js" %}'></script>
+</body>
+
+</html>

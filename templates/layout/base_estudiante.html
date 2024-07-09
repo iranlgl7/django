@@ -1,0 +1,22 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block 'fav-icon' %}
+<link rel="icon" type="image/png" href="{% static 'icono_estudiante.png' %}" />
+{% endblock  %}
+
+{% block 'estilos' %}
+  <link rel="stylesheet" href="{% static 'css/estudiante.css' %}">
+  {% block 'sub-estilos' %}{% endblock  %}
+{% endblock  %}
+
+{% block 'nav_class' %}
+  custom-nav
+{% endblock %}
+
+{% block 'nav_links' %}
+  <a class="nav-link" aria-current="page" href="{% url 'listar_asignaturas'%}">Asignaturas</a>
+  <a class="nav-link {% block 'link-clases' %}{% endblock %}" aria-current="page" href="{% url 'listar_clases' asignatura_pk=view.kwargs.asignatura_pk %}">Clases</a>
+  <a class="nav-link {% block 'link-actividades' %}{% endblock %}" href="{% url 'listar_actividades_evaluativas' asignatura_pk=view.kwargs.asignatura_pk %}">Actividades</a>
+  <a class="nav-link {% block 'link-dudas' %}{% endblock %}" href="{% url 'listar_profesores' asignatura_pk=view.kwargs.asignatura_pk %}">Dudas</a>
+{% endblock  %}

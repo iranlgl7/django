@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Eva | {% block 'titulo' %}{% endblock %}</title>
+  {% block 'fav-icon' %}{% endblock  %}
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/brands.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/solid.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  {% block 'estilos' %}{% endblock %}
+</head>
+
+<body class='bg-light'>
+  <div class="sticky-top user-select-none">
+    <nav class="shadow-sm navbar navbar-expand-lg bg-body-tertiary navbar-dark{% block 'nav_class' %}{% endblock %}">
+      <div class="container-fluid">
+        <span class="navbar-brand">EVA</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            {% block 'nav_links' %}
+            {% endblock  %}
+          </div>
+          <div class="w-100 p-1 d-flex justify-content-end align-items-center">
+            <span class='me-3 fw-b text-white'>{{request.user.username}}</span>
+            <form action="{% url 'logout' %}" method='post'>
+              {% csrf_token %}
+              <button class='btn btn-outline-light'>Cerrar Sesión <i class="fa-solid fa-right-from-bracket"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% block 'anexo' %}
+    {% endblock  %}
+  </div>
+  {% block 'contenido' %} {% endblock %}
+  {% block 'scripts' %} {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista profesor.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Actividades Evaluativas{% endblock %}
+
+{% block 'link-actividades' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Actividades Evaluativas de <b>"{{request.user.usuario.profesor.asignatura.nombre}}"</b></h1>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for actividad in object_list %}
+    <div class="lista-item">
+      <a class="lista-item-link" href="{% url 'visualizar_actividad_evaluativa_profesor' actividad.pk %}" style="font-size: 20px;">
+        <b>#{{actividad.numero}} Actividad:</b> {{actividad.objetivoEvaluar}}
+      </a>
+      <a href="{% url "modificar_actividad_evaluativa" actividad.pk %}" class="lista-item-btn btn-modificar"><i class="fa-solid fa-pen-to-square"></i></a>
+      <a href="{% url "eliminar_actividad_evaluativa" actividad.pk %}" class="lista-item-btn btn-eliminar"><i class="fa-solid fa-trash-can"></i></a>
+    </div>
+    {% empty %}
+    <h4 class="text-center">No existe ninguna actividad evaluativa para esta asignatura.</h4>
+    {% endfor %}
+  </div>
+  <div class="mt-5 p-4"></div>
+  <div class="fixed-bottom d-flex p-3 justify-content-center bg-white border shadow">
+    <a href="{% url 'crear_actividad_evaluativa' %}" class="btn btn-green"><i class="fa-solid fa-plus"></i> Nueva Actividad Evaluativa</a>
+  </div>
+</div>
+{% endblock %}

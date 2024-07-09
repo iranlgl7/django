@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>EVA | Bienvenido</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bienvenida.css' %}">
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'jquery/jquery-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+  <svg id="onda" viewBox="0 0 1920 216.32" preserveAspectRatio='none'>
+    <defs>
+      <style>
+        .cls-1 {
+          fill: #fff;
+        }
+      </style>
+    </defs>
+    <path class="cls-1" d="m0,133.65S155.5-12.18,552.5.82s458,223,781,165,586.5-32.17,586.5-32.17v82.67H0v-82.67Z" />
+  </svg>
+  <header class='text-center'>
+    <h1>Entorno Virtual de Aprendizaje</h1>
+    <h2>Secundaria "28 de Enero"</h2>
+  </header>
+  <main>
+    <div class="container user-select-none">
+      <h2>Antecedentes</h2>
+      <p>Las Tecnologías de la Información y las Comunicaciones (TIC) desempeñan un papel 
+        fundamental en la sociedad actual, particularmente en la educación, donde han mejorado el 
+        Proceso de Enseñanza y Aprendizaje (PEA) al superar barreras de tiempo y espacio (Molina et 
+        al., 2010; Adell et al., 2004). Sin embargo, la educación presencial se ve limitada para abordar 
+        las demandas actuales, lo que ha llevado a la necesidad de nuevos enfoques y estrategias 
+        (García-Aretio, 1999b, 2002, 2014, 2017, 2021; Jung, 2019; Yee & Miranda, 1999, 2006). La 
+        pandemia del 2020 exacerbó estas limitaciones, paralizando la educación presencial y 
+        generando escasez de profesores, lo que ha llevado a un refuerzo de la educación a distancia 
+        por parte de los ministerios de educación. El empleo de las TIC en la educación ha evolucionado 
+        desde el simple almacenamiento de información hacia la comunicación y el aprendizaje en línea, 
+        permitiendo superar las limitaciones del aula y expandir el acceso a la información (Aibar, 2008; 
+        Molina et al., 2010). Esto ha impulsado modalidades como la educación virtual y la enseñanza 
+        semipresencial como alternativas en el Proceso de Enseñanza y Aprendizaje (PEA).
+        </p>
+        <h2>¿Cómo contribuir al desarrollo de la educación a distancia en las Secundaria Básica haciendo 
+          uso de las TIC?</h2>
+        <p>A partir del problema científico planteado, se define como objeto de estudio: una plataforma de 
+          aprendizaje en línea.</p>
+        <p>Teniendo en cuenta el problema científico y el objeto de estudio definido, se propone como 
+          objetivo general de la investigación: desarrollar de un entorno de aprendizaje en línea para 
+          aprovechar en el proceso de enseñanza y aprendizaje las potencialidades que pueden obtenerse 
+          del uso de las TIC.</p>
+        <p>Para la realización de la investigación y teniendo en cuenta el objetivo general definido, se 
+          delimita como campo de acción: un entorno virtual de aprendizaje para la enseñanza media en 
+          Cuba.</p>
+      <div class="d-flex justify-content-center mt-5">
+        <a href="{% url 'login' %}" class="btn btn-dark btn-lg">Autenticarse en el Sistema</a>
+      </div>
+    </div>
+  </main>
+  <footer class="p-3 text-light shadow text-center user-select-none">
+    <span>EVA - Todos los Derechos Reservados. Versión 1.0</span>
+  </footer>
+</body>
+
+</html>

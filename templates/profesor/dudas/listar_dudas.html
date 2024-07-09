@@ -1,0 +1,46 @@
+{% extends "layout/base_profesor.html" %}
+{% load static %}
+
+{% block 'sub-estilos' %}
+<link rel="stylesheet" href="{% static 'css/lista estudiantes.css' %}">
+{% endblock %}
+
+{% block 'titulo' %}Dudas{% endblock %}
+
+{% block 'link-dudas' %}active{% endblock %}
+
+{% block 'contenido' %}
+<div class='text-center mt-3 user-select-none'>
+  <h1>Lista de Dudas</h1>
+  <h3><b>Estudiante: </b>{{estudiante.usuario.first_name}} {{estudiante.usuario.last_name}}</h3>
+</div>
+<hr>
+<div class="container">
+  <div class='lista'>
+    {% for duda in object_list %}
+    <a class="lista-item-link
+      {% if not duda.visto %}
+        nueva
+      {% endif %}
+    " href="{% url "visualizar_duda_profesor" estudiante_pk=estudiante.pk pk=duda.pk %}"
+      style="font-size: 20px;">
+      <div class="row">
+        <div class="col-md-9">
+          <span class='fw-bold'>{{duda.fecha|date:'g:i a'}}</span>
+          {{duda.sobre}}
+        </div>
+        <div class="col-md-3 text-center text-md-end fw-bold">
+          {{duda.fecha|date:'d/m/Y'}}
+        </div>
+      </div>
+    </a>
+    {% empty %}
+    <h4 class="text-center">No existen dudas de este estudiante.</h4>
+    {% endfor %}
+  </div>
+  <div class="mt-5 p-4"></div>
+  <div class="fixed-bottom d-flex p-3 justify-content-center bg-white border shadow">
+    <a href="{% url 'listar_estudiantes' %}" class="btn btn-green"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+  </div>
+</div>
+{% endblock %}
