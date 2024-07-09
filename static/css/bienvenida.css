@@ -1,0 +1,103 @@
+header {
+  height: 100vh;
+  background: linear-gradient(rgba(17, 0, 255, 0.081), rgba(255, 255, 255, 0.108)), url(/static/bienvenida.jpg);
+  background-size: cover;
+  background-position: 0 -460px;
+  padding: 20px;
+  user-select: none;
+}
+
+h1 {
+  margin-top: 15vh;
+  font-size: 130px;
+  color: rgb(255, 255, 145);
+  text-shadow: 0 0 20px #272c0071;
+}
+
+header h2 {
+  font-size: 80px;
+  text-shadow: 0 0 20px #dddddd71;
+}
+
+#onda {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
+
+main {
+  background: linear-gradient(#fff, #909196);
+}
+
+main h2 {
+  margin-top: 250px;
+  text-align: center;
+  font-size: 45px;
+}
+
+main p {
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+footer {
+  background-color: rgba(25, 25, 25, 0.855);
+}
+
+a {
+  margin-bottom: 150px;
+}
+
+@media screen and (max-width: 1200px) {
+  h1 {
+    font-size: 100px;
+  }
+
+  header h2 {
+    font-size: 60px;
+  }
+
+  #onda {
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  h1 {
+    font-size: 75px;
+    text-align: center;
+  }
+
+  header h2 {
+    text-align: center;
+    font-size: 40px;
+  }
+
+  #onda {
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+
+  header {
+    height: 60vh;
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-size: 40px;
+  }
+
+  header h2 {
+    font-size: 35px;
+  }
+
+  #onda {
+    bottom: 40vh;
+    height: 40px;
+  }
+}

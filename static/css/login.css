@@ -1,0 +1,134 @@
+body {
+  background: url('../fondo-login.jpg');
+  background-size: cover;
+  overflow: hidden;
+}
+
+.login {
+  background: #fff;
+  width: 500px;
+  padding: 25px;
+  border-radius: 30px;
+  outline: 10px solid #ffffff80;
+  transition: all .15s;
+  user-select: none;
+  animation: login 1s forwards;
+  z-index: 8;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #5863bf;
+}
+
+H2 {
+  font-size: 30px;
+  color: #3d4590;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.login:hover {
+  outline: 20px solid #ffffff80;
+}
+
+
+#libros {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  animation: libros 1.5s forwards;
+}
+
+#marti {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  width: 700px;
+  animation: marti 1.5s forwards;
+  transition: all 0.2s;
+}
+
+@keyframes libros {
+  0% {
+    filter: blur(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    filter: blur(4px);
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes login {
+  0% {
+    transform: translateX(-90%);
+    filter: brightness(10);
+    filter: blur(4px);
+  }
+
+  100% {
+    transform: translate(0);
+    filter: brightness(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes marti {
+  0% {
+    transform: translateX(150px);
+    filter: blur(0);
+  }
+
+  100% {
+    transform: translateX(0);
+    filter: blur(4px);
+  }
+}
+
+@media screen and (max-width:720px) {
+  .login {
+    width: 90%;
+    border-radius: 10px;
+  }
+
+  .login:hover {
+    outline: 12px solid #ffffff80;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  #libros,
+  #marti {
+    display: none;
+  }
+}
+
+@media screen and (max-width:1100px) {
+  #libros {
+    display: none;
+  }
+}
+
+@media screen and (max-width:1366px) {
+  #libros {
+    left: -150px;
+  }
+}

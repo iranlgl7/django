@@ -1,0 +1,149 @@
+.lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-item {
+  display: flex;
+  transition: all .1s;
+  animation: aparecer .5s forwards;
+}
+
+.lista-item:hover {
+  padding: 5px;
+}
+
+.lista-item-link {
+  overflow: hidden;
+  word-wrap: break-word;
+  width: 90%;
+  margin: 5px 0;
+  background-color: #fff;
+  color: var(--color-bg-darker);
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: .8px solid var(--border-color-gray);
+  transition: all .1s;
+  box-shadow: 0 0 4px #7979795a;
+}
+
+.lista-item-link:hover {
+  background-color: var(--color-bg);
+  border: .8px solid var(--color-bg-dark);
+  box-shadow: 0 0 8px #26262674;
+  color: #ffffff;
+}
+
+.lista-item-link:active {
+  background-color: #244926;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid var(--color-outline);
+  border: none;
+  color: #ffffff;
+}
+
+.lista-item-btn {
+  max-height: 60px;
+  width: 5%;
+  min-width: 50px;
+  margin: 5px 0;
+  background-color: #fff;
+  color: var(--color-bg-darker);
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: .8px solid var(--border-color-gray);
+  transition: all .1s;
+  box-shadow: 0 0 4px #7979795a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lista-item-btn:hover {
+  background-color: var(--color-bg);
+  border: .8px solid var(--color-bg-dark);
+  color: #ffffff;
+  box-shadow: 0 0 8px #26262674;
+}
+
+.btn-modificar {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.btn-modificar:hover {
+  background: #f2cf42;
+  border: .8px solid #b49727;
+}
+
+.btn-eliminar:hover {
+  background: #f97878;
+  border: .8px solid #a23c3c;
+}
+
+
+.btn-modificar:active {
+  background-color: #7f6b18;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid #f2cf4280;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-eliminar:active {
+  background-color: #a23c3c;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid #c14c4c80;
+  border: none;
+  color: #ffffff;
+}
+
+@keyframes aparecer {
+  0% {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 100;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .lista-item {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .lista-item::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: rgb(14, 119, 30);
+    margin-top: 10px;
+  }
+
+  .lista-item-link {
+    width: 100%;
+  }
+
+  .lista-item-btn {
+    margin: 0;
+    width: 48%;
+  }
+
+  .btn-modificar::after {
+    margin-left: 2px;
+    content: 'Modificar';
+  }
+
+  .btn-eliminar::after {
+    margin-left: 2px;
+    content: 'Eliminar';
+  }
+
+}

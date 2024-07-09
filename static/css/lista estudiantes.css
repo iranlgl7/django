@@ -1,0 +1,67 @@
+.lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-item-link {
+  word-wrap: break-word;
+  margin: 5px 0;
+  background-color: #fff;
+  color: var(--color-bg-darker);
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: .8px solid var(--border-color-gray);
+  transition: all .1s;
+  box-shadow: 0 0 4px #c1c1c117;
+  animation: aparecer .5s forwards;
+}
+
+.lista-item-link:hover {
+  background-color: var(--color-bg);
+  box-shadow: 0 0 8px #73737317;
+  color: #ffffff;
+  margin: 5px;
+}
+
+.lista-item-link:active {
+  background-color: #244925;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid var(--color-outline);
+  border: none;
+  color: #ffffff;
+}
+
+.nueva::before {
+  content: '+Nueva';
+  position: fixed;
+  top: -10px;
+  left: -20px;
+  font-size: 13px;
+  background: #eaff08;
+  color: rgb(0, 0, 22);
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px #898989;
+  font-weight: 500;
+}
+
+@media screen and (max-width:720px) {
+  .nueva::before {
+    right: -5px;
+    top: -5px;
+    left: auto;
+  }
+}
+
+@keyframes aparecer {
+  0% {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 100;
+  }
+}

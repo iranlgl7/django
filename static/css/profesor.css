@@ -1,0 +1,32 @@
+:root {
+  --color-bg: rgb(41, 138, 74);
+  --color-bg-dark: rgb(84, 158, 73);
+  --color-bg-darker: rgb(36, 97, 29);
+  --color-outline: rgba(91, 203, 87, 0.545);
+  --down-transparent: #325e29f6;
+  --border-color-gray: #e3e3e3;
+}
+
+.custom-nav {
+  background-color: var(--color-bg);
+}
+
+h1 {
+  color: var(--color-bg-darker);
+}
+
+.btn-green {
+  background-color: var(--color-bg);
+  border-color: var(--color-bg-dark);
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.btn-green:hover {
+  background-color: var(--color-bg-dark);
+  color: #fff;
+}
+
+.bg-green {
+  background-color: #cccccc;
+}

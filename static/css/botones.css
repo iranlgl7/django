@@ -1,0 +1,36 @@
+.btn-modificar {
+  background: #ffeca0;
+  border: .8px solid #ededed;
+}
+
+.btn-eliminar {
+  background: #ffa0a0;
+  border: .8px solid #ededed;
+}
+
+.btn-modificar:hover {
+  background: #f2cf42;
+  border: .8px solid #b49727;
+}
+
+.btn-eliminar:hover {
+  background: #f97878;
+  border: .8px solid #a23c3c;
+}
+
+
+.btn-modificar:active {
+  background-color: #7f6b18;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid #f2cf4280;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-eliminar:active {
+  background-color: #a23c3c;
+  box-shadow: 0 0 8px #73737317;
+  outline: 6px solid #c14c4c80;
+  border: none;
+  color: #ffffff;
+}
